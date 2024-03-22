@@ -16,9 +16,9 @@ public class Riviste  extends Catalogo{
     protected Riviste(){
 
     }
-    public Riviste (String title, int annoPubblicazione, int numeroPagine, Periodicità periodicità){
+    public Riviste (Long isbn, String title, int annoPubblicazione, int numeroPagine, Periodicità periodicità){
 
- super(title, annoPubblicazione, numeroPagine);
+ super(isbn, title, annoPubblicazione, numeroPagine);
     this.periodicità=  periodicità;
 
     }

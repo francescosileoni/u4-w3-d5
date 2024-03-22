@@ -12,22 +12,24 @@ public abstract class Catalogo {
 
     @Id
 
-    protected String isbn;
+    protected Long isbn;
     protected String title;
 
     protected int annoPubblicazione;
+    @OneToOne(mappedBy = "elementoPrestato")
     protected int numeroPagine;
+
 
 
     protected Catalogo() {
     }
-    protected Catalogo(String title, int annoPubblicazione, int numeroPagine) {
-
+    protected Catalogo( Long isbn, String title, int annoPubblicazione, int numeroPagine) {
+this.isbn=isbn;
         this.title = title;
         this.annoPubblicazione= annoPubblicazione;
         this.numeroPagine= numeroPagine;
     }
-    public String getIsbn() {
+    public Long  getIsbn() {
         return isbn;
     }
 

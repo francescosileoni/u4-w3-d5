@@ -1,23 +1,23 @@
 package org.example.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="utente")
-public class User
-{
+public class User {
 
     @Id
     private long numeroTessera;
     private String nome;
-    private  String cognome;
+    private String cognome;
     private Date data;
 
+    // Aggiungi campo per rappresentare i prestiti associati all'utente
+    @OneToMany(mappedBy = "utente")
+    private List<Prestito> prestiti;
 
     public User(long numeroTessera, String nome, String cognome, Date data) {
         this.numeroTessera = numeroTessera;
@@ -29,7 +29,6 @@ public class User
     public long getNumeroTessera() {
         return numeroTessera;
     }
-
 
     public String getNome() {
         return nome;
@@ -53,7 +52,14 @@ public class User
 
     public void setData(Date data) {
         this.data = data;
+    }
 
+    public List<Prestito> getPrestiti() {
+        return prestiti;
+    }
+
+    public void setPrestiti(List<Prestito> prestiti) {
+        this.prestiti = prestiti;
     }
 
     @Override

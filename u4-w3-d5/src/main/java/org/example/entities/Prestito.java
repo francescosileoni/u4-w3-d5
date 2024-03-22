@@ -1,9 +1,6 @@
 package org.example.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -17,19 +14,35 @@ public class Prestito {
     private  Date  restituzionePrevista;
     private  Date restituzioneEffettiva;
 
+    @ManyToOne
+    @JoinColumn
+    private User user;
+    @OneToOne
+    @JoinColumn
+    private Catalogo elementoPrestato;
 
-    public Prestito(long id, Date inizioPrestito, Date restituzionePrevista, Date restituzioneEffettiva) {
+    public Prestito(long id, Date inizioPrestito, Date restituzionePrevista, Date restituzioneEffettiva,User user) {
         this.id = id;
         this.inizioPrestito = inizioPrestito;
         this.restituzionePrevista = restituzionePrevista;
         this.restituzioneEffettiva = restituzioneEffettiva;
+        this.user= user;
+    }
+
+    public Prestito(long numeroTessera, Catalogo byId, Date date, Date date1, Date date2) {
     }
 
     public long getId() {
         return id;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Date getInizioPrestito() {
         return inizioPrestito;
@@ -62,6 +75,7 @@ public class Prestito {
                 ", inizioPrestito=" + inizioPrestito +
                 ", restituzionePrevista=" + restituzionePrevista +
                 ", restituzioneEffettiva=" + restituzioneEffettiva +
+                ", user=" + user +
                 '}';
     }
 }
